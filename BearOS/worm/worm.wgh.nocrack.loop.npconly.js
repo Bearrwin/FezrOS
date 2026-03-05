@@ -9,16 +9,12 @@ export async function main(ns) {
 
 	for (let server of servers) {
 		await ns.scp("BearOS/loop/combo.wgh.nocrack.loop.js", server, "home")
+		let available_threads = threadCount(ns, server, 2.8)
+			if (available_threads >= 1) {
+				ns.print(available_threads)
+				ns.exec("BearOS/loop/combo.wgh.nocrack.loop.js", server, available_threads, target)
+
+			}
 	}
-
-	let available_threads = threadCount(ns, server, 2.8)
-		if (available_threads >= 1) {
-			ns.print(available_threads)
-			ns.exec("BearOS/loop/combo.wgh.nocrack.loop.js", server, available_threads, target)
-
-		}
-
-}
-await ns.sleep(50)
 
 }
