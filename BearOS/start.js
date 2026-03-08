@@ -61,6 +61,10 @@ export async function main(ns) {
 	}
 
 }
+if (ns.getPurchasedServers() < 5) {
+	let sToBuy = 5 - ns.getPurchasedServers()
+		await ns.exec("BearOS/cloud/cloud.buy.loop.js", "home", 1, "S", 64, sToBuy, 20000)
+}
 
 /*
 ns.print("Setting Hash sale type to cash.");
@@ -82,10 +86,6 @@ if (!ns.fileExists("BruteSSH.exe", "home") && ns.getServerMoneyAvailable("home")
 ns.singularity.purchaseProgram("BruteSSH.exe");
 }
 
-if (ns.getPurchasedServers() < 5) {
-let sToBuy = 5 - ns.getPurchasedServers()
-await ns.exec("/serv/serv.buy.loop.js", "home", 1, "S", 64, sToBuy, 20000)
-}
 ns.kill("/loop/combo.wgh.nocrack.loop.js", "home", "n00dles");
 
 
@@ -97,5 +97,3 @@ ns.kill("/loop/combo.wgh.nocrack.loop.js", "home", "n00dles");
 
 
  */
-
-}
