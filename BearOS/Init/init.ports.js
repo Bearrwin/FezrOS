@@ -1,5 +1,5 @@
 /** @param {NS} ns */
-export async function main(ns); {
+export async function main(ns) {
 
 	ns.ui.openTail();
 	ns.ui.resizeTail(300, 130);
