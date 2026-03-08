@@ -3,6 +3,9 @@
 10010002		Current BN
 10010003		Fresh BN
 
+10010201		Cloud max qty
+10010202		Cloud max size
+
 				Source files
 
 10010101		SF-1

@@ -37,7 +37,7 @@ export async function main(ns) {
 					ns.purchaseServer(serverName, (ram));
 					ns.print("We have enough money, I am buying a " + ram + " Gb server");
 					await ns.sleep(500);
-					ns.run("BeaoOS/cloud/cloud.propagate.all.js");
+					ns.run("BearOS/cloud/cloud.propagate.all.js");
 					servCount++;
 				}
 				availMoney = ns.getServerMoneyAvailable("home")

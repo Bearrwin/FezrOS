@@ -7,6 +7,9 @@ export async function main(ns) {
 	ns.disableLog('ALL');
 
 	let currWork = ns.singularity.getCurrentWork()
+	let cloudQty = ns.peek(10010201)
+	let cloudSize = ns.peek(10010202)
+	
 		//let thisBN =
 		//let freshBN =
 
@@ -59,17 +62,17 @@ export async function main(ns) {
 				ns.print("You are studying " + currWork.classType + " at " + currWork.location)
 		}
 	}
-
-	if (ns.getPurchasedServers() < 5) {
-		let sToBuy = 5 - ns.getPurchasedServers()
-			await ns.exec("BearOS/cloud/cloud.buy.loop.js", "home", 1, "S", 64, sToBuy, 20000)
-	}
 	ns.print("Setting Hash sale type to cash.");
 	ns.run("BearOS/hnet/cash.js");
 	await ns.sleep(500);
 	ns.print("Starting Hash sales.");
 	ns.run("BearOS/bot/bot.hacknet.sellhashes.js");
 	ns.run("BearOS/utils/selling.js");
+
+	if (ns.getPurchasedServers() < cloudQty {
+		let sToBuy = cloudQty - ns.getPurchasedServers()
+			await ns.exec("BearOS/cloud/cloud.buy.loop.js", "home", 1, "S", 64, sToBuy, 20000)
+	}
 
 }
 /*

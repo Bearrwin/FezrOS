@@ -1,10 +1,10 @@
 /** @param {NS} ns */
 export async function main(ns) {
 
-	ns.ui.openTail();
-	ns.ui.resizeTail(300, 130);
-	ns.ui.moveTail(1225, 485);
-	ns.disableLog('ALL');
+	//ns.ui.openTail();
+	//ns.ui.resizeTail(300, 130);
+	//ns.ui.moveTail(1225, 485);
+	//ns.disableLog('ALL');
 
 	// set dirList variable to be a list of all files on home server, including folders
 	// then filter list and only keep ones that include .js in the name excluding exe and other

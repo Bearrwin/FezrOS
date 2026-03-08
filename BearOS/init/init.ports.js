@@ -15,6 +15,18 @@ export async function main(ns) {
 	let _10010003 = ns.read("BearOS/savedVar/10010003.txt");
 	ns.clearPort(10010003);
 	ns.writePort(10010003, _10010003);
+	
+	// Cloud info
+	
+	let _10010201 = ns.read("BearOS/savedVar/10010201.txt");
+	ns.clearPort(10010201);
+	ns.writePort(10010201, _10010201);
+	
+	let _10010202 = ns.read("BearOS/savedVar/10010202.txt");
+	ns.clearPort(10010202);
+	ns.writePort(10010202, _10010202);
+
+
 
 	// Source files
 
