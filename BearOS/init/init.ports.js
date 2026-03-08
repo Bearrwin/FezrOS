@@ -261,4 +261,11 @@ export async function main(ns) {
 	ns.writePort(10010608, _10010608);
 
 
+
+
+// Port init complete so go active
+
+	ns.clearPort(10010001)
+	ns.writePort(10010001, "true")
+
 }

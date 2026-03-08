@@ -1,0 +1,118 @@
+/** @param {NS} ns */
+export async function main(ns) {
+
+	ns.ui.openTail();
+	ns.ui.resizeTail(300, 130);
+	ns.ui.moveTail(1225, 485);
+	ns.disableLog('ALL');
+
+		let mults = ns.getBitNodeMultipliers()
+		//ns.print(mults)
+
+		let _10010501 = mults.AgilityLevelMultiplier;
+		let _10010502 = mults.AugmentationMoneyCost;
+		let _10010503 = mults.AugmentationRepCost;
+		let _10010504 = mults.BladeburnerRank;
+		let _10010505 = mults.BladeburnerSkillCost;
+		let _10010506 = mults.CharismaLevelMultiplier;
+		let _10010507 = mults.ClassGymExpGain;
+		let _10010508 = mults.CodingContractMoney;
+		let _10010509 = mults.CompanyWorkExpGain;
+		let _10010510 = mults.CompanyWorkMoney;
+		let _10010511 = mults.CompanyWorkRepGain;
+		let _10010512 = mults.CorporationDivisions;
+		let _10010513 = mults.CorporationSoftcap;
+		let _10010514 = mults.CorporationValuation;
+		let _10010515 = mults.CrimeExpGain;
+		let _10010516 = mults.CrimeMoney;
+		let _10010517 = mults.CrimeSuccessRate;
+		let _10010518 = mults.DaedalusAugsRequirement;
+		let _10010519 = mults.DefenseLevelMultiplier;
+		let _10010520 = mults.DexterityLevelMultiplier;
+		let _10010521 = mults.FactionPassiveRepGain;
+		let _10010522 = mults.FactionWorkExpGain;
+		let _10010523 = mults.FactionWorkRepGain;
+		let _10010524 = mults.FourSigmaMarketDataApiCost;
+		let _10010525 = mults.FourSigmaMarketDataCost;
+		let _10010526 = mults.GangSoftcap;
+		let _10010527 = mults.GangUniqueAugs;
+		let _10010528 = mults.GoPower;
+		let _10010529 = mults.HackExpGain;
+		let _10010530 = mults.HackingLevelMultiplier;
+		let _10010531 = mults.HackingSpeedMultiplier;
+		let _10010532 = mults.HacknetNodeMoney;
+		let _10010533 = mults.HomeComputerRamCost;
+		let _10010534 = mults.InfiltrationMoney;
+		let _10010535 = mults.InfiltrationRep;
+		let _10010536 = mults.ManualHackMoney;
+		let _10010537 = mults.PurchasedServerCost;
+		let _10010538 = mults.PurchasedServerSoftcap;
+		let _10010539 = mults.PurchasedServerLimit;
+		let _10010540 = mults.PurchasedServerMaxRam;
+		let _10010541 = mults.RepToDonateToFaction;
+		let _10010542 = mults.ScriptHackMoney;
+		let _10010543 = mults.ScriptHackMoneyGain;
+		let _10010544 = mults.ServerGrowthRate;
+		let _10010545 = mults.ServerMaxMoney;
+		let _10010546 = mults.ServerStartingMoney;
+		let _10010547 = mults.ServerStartingSecurity;
+		let _10010548 = mults.ServerWeakenRate;
+		let _10010549 = mults.StrengthLevelMultiplier;
+		let _10010550 = mults.StaneksGiftPowerMultiplier;
+		let _10010551 = mults.StaneksGiftExtraSize;
+		let _10010552 = mults.WorldDaemonDifficulty;
+
+		ns.write("BearOS/savedVar/10010501.txt", _10010501, "w");
+		ns.write("BearOS/savedVar/10010502.txt", _10010502, "w");
+		ns.write("BearOS/savedVar/10010503.txt", _10010503, "w");
+		ns.write("BearOS/savedVar/10010504.txt", _10010504, "w");
+		ns.write("BearOS/savedVar/10010505.txt", _10010505, "w");
+		ns.write("BearOS/savedVar/10010506.txt", _10010506, "w");
+		ns.write("BearOS/savedVar/10010507.txt", _10010507, "w");
+		ns.write("BearOS/savedVar/10010508.txt", _10010508, "w");
+		ns.write("BearOS/savedVar/10010509.txt", _10010509, "w");
+		ns.write("BearOS/savedVar/10010510.txt", _10010510, "w");
+		ns.write("BearOS/savedVar/10010511.txt", _10010511, "w");
+		ns.write("BearOS/savedVar/10010512.txt", _10010512, "w");
+		ns.write("BearOS/savedVar/10010513.txt", _10010513, "w");
+		ns.write("BearOS/savedVar/10010514.txt", _10010514, "w");
+		ns.write("BearOS/savedVar/10010515.txt", _10010515, "w");
+		ns.write("BearOS/savedVar/10010516.txt", _10010516, "w");
+		ns.write("BearOS/savedVar/10010517.txt", _10010517, "w");
+		ns.write("BearOS/savedVar/10010518.txt", _10010518, "w");
+		ns.write("BearOS/savedVar/10010519.txt", _10010519, "w");
+		ns.write("BearOS/savedVar/10010520.txt", _10010520, "w");
+		ns.write("BearOS/savedVar/10010521.txt", _10010521, "w");
+		ns.write("BearOS/savedVar/10010522.txt", _10010522, "w");
+		ns.write("BearOS/savedVar/10010523.txt", _10010523, "w");
+		ns.write("BearOS/savedVar/10010524.txt", _10010524, "w");
+		ns.write("BearOS/savedVar/10010525.txt", _10010525, "w");
+		ns.write("BearOS/savedVar/10010526.txt", _10010526, "w");
+		ns.write("BearOS/savedVar/10010527.txt", _10010527, "w");
+		ns.write("BearOS/savedVar/10010528.txt", _10010528, "w");
+		ns.write("BearOS/savedVar/10010529.txt", _10010529, "w");
+		ns.write("BearOS/savedVar/10010530.txt", _10010530, "w");
+		ns.write("BearOS/savedVar/10010531.txt", _10010531, "w");
+		ns.write("BearOS/savedVar/10010532.txt", _10010532, "w");
+		ns.write("BearOS/savedVar/10010533.txt", _10010533, "w");
+		ns.write("BearOS/savedVar/10010534.txt", _10010534, "w");
+		ns.write("BearOS/savedVar/10010535.txt", _10010535, "w");
+		ns.write("BearOS/savedVar/10010536.txt", _10010536, "w");
+		ns.write("BearOS/savedVar/10010537.txt", _10010537, "w");
+		ns.write("BearOS/savedVar/10010538.txt", _10010538, "w");
+		ns.write("BearOS/savedVar/10010539.txt", _10010539, "w");
+		ns.write("BearOS/savedVar/10010540.txt", _10010540, "w");
+		ns.write("BearOS/savedVar/10010541.txt", _10010541, "w");
+		ns.write("BearOS/savedVar/10010542.txt", _10010542, "w");
+		ns.write("BearOS/savedVar/10010543.txt", _10010543, "w");
+		ns.write("BearOS/savedVar/10010544.txt", _10010544, "w");
+		ns.write("BearOS/savedVar/10010545.txt", _10010545, "w");
+		ns.write("BearOS/savedVar/10010546.txt", _10010546, "w");
+		ns.write("BearOS/savedVar/10010547.txt", _10010547, "w");
+		ns.write("BearOS/savedVar/10010548.txt", _10010548, "w");
+		ns.write("BearOS/savedVar/10010549.txt", _10010549, "w");
+		ns.write("BearOS/savedVar/10010550.txt", _10010550, "w");
+		ns.write("BearOS/savedVar/10010551.txt", _10010551, "w");
+		ns.write("BearOS/savedVar/10010552.txt", _10010552, "w");
+
+}

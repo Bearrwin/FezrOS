@@ -8,12 +8,9 @@ var purchServCount = ns.read("/savedVar/purchServCount.txt")
 ns.write("/savedVar/newTarget.txt", "true", "w");
 
 /// code to put at beginning of scripts that may be running on game close and reopen
-while (ns.peek(10010001) == "false") {
-
-	await ns.sleep(1000)
-}
-
-
+	while (ns.peek(10010001) != "true"){
+		await ns.sleep(1000)
+	}
 
 
   ns.ui.openTail();
