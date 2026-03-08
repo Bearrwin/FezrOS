@@ -4,7 +4,7 @@ export function threadMax(ns, host, scriptSize) {
 	let threadNum = 1;
 	let freeRam = ns.getServerMaxRam(host) - ns.getServerUsedRam(host);
 
-	threads = freeRam / scriptSize;
+	threadNum = freeRam / scriptSize;
 	return Math.floor(threadNum);
 }
 
@@ -28,7 +28,7 @@ export function npcList(ns) {
 	return Array.from(sList).filter(s => !ns.getPurchasedServers().includes(s) && !s.startsWith("hacknet") && s != "home").sort();
 }
 
-export function (ns) {
+export function hnetlist(ns) {
 	const sList = new Set(["home"]);
 	for (const serv of sList) {
 		for (const nextnode of ns.scan(serv)) {
