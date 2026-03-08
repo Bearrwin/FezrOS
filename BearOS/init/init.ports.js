@@ -16,9 +16,6 @@ export async function main(ns) {
 	ns.clearPort(10010003);
 	ns.writePort(10010003, _10010003);
 
-
-
-
 	// Source files
 
 	let _10010101 = ns.read("BearOS/savedVar/10010101.txt");
@@ -260,10 +257,21 @@ export async function main(ns) {
 	ns.clearPort(10010608);
 	ns.writePort(10010608, _10010608);
 
+	// Hacknet options
 
+	let _10040011 = ns.read("BearOS/savedVar/10040011.txt");
+	ns.clearPort(10040011);
+	ns.writePort(10040011, _10040011);
 
+	let _10040012 = ns.read("BearOS/savedVar/10040012.txt");
+	ns.clearPort(10040012);
+	ns.writePort(10040012, _10040012);
 
-// Port init complete so go active
+	let _10040013 = ns.read("BearOS/savedVar/10040013.txt");
+	ns.clearPort(10040013);
+	ns.writePort(10040013, _10040013);
+
+	// Port init complete so go active
 
 	ns.clearPort(10010001)
 	ns.writePort(10010001, "true")

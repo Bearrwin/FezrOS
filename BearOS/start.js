@@ -60,20 +60,19 @@ export async function main(ns) {
 		}
 	}
 
-}
-if (ns.getPurchasedServers() < 5) {
-	let sToBuy = 5 - ns.getPurchasedServers()
-		await ns.exec("BearOS/cloud/cloud.buy.loop.js", "home", 1, "S", 64, sToBuy, 20000)
-}
+	if (ns.getPurchasedServers() < 5) {
+		let sToBuy = 5 - ns.getPurchasedServers()
+			await ns.exec("BearOS/cloud/cloud.buy.loop.js", "home", 1, "S", 64, sToBuy, 20000)
+	}
+	ns.print("Setting Hash sale type to cash.");
+	ns.run("BearOS/hnet/cash.js");
+	await ns.sleep(500);
+	ns.print("Starting Hash sales.");
+	ns.run("BearOS/bot/bot.hacknet.sellhashes.js");
+	ns.run("BearOS/utils/selling.js");
 
+}
 /*
-ns.print("Setting Hash sale type to cash.");
-ns.run("/hnet/cash.js");
-await ns.sleep(500);
-ns.print("Starting Hash sales.");
-ns.run("/bot/bot.hacknet.sellhashes.js");
-ns.run("/utils/selling.js");
-
 while (ns.getServerMoneyAvailable("home") < (ns.singularity.getDarkwebProgramCost("BruteSSH.exe") + 200000)) {
 await ns.sleep(1000)
 }
@@ -96,4 +95,4 @@ ns.kill("/loop/combo.wgh.nocrack.loop.js", "home", "n00dles");
 //await ns.sleep(1000)
 
 
- */
+*/

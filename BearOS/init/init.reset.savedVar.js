@@ -96,5 +96,14 @@ export async function main(ns) {
 	ns.write("BearOS/savedVar/10010606.txt", "true", "w");
 	ns.write("BearOS/savedVar/10010607.txt", "true", "w");
 	ns.write("BearOS/savedVar/10010608.txt", "true", "w");
+	
+	
+	// Hacknet options
+	ns.write("BearOS/savedVar/10040011.txt", 1, "w");
+	ns.write("BearOS/savedVar/10040012.txt", "Sell for Money", "w");
+	ns.write("BearOS/savedVar/10040013.txt", "", "w");
+	
+	
+
 
 }
