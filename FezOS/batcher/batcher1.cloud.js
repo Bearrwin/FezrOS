@@ -1,93 +1,111 @@
 /** @param {NS} ns */
 export async function main(ns) {
 
-		
+
 	ns.ui.openTail(50, 50);
 	//ns.ui.moveTail(1450, 540)
 	ns.ui.resizeTail(500, 150);
-	let currTarg = ns.peek(10020101);
-	let currWeak = ns.peek(10020102);
-	let currGrow = ns.peek(10020103);
+
+
 	let currHack = ns.peek(10020104);
-	let currDelay = ns.peek(10020105);
+	let currTarg = ns.peek(10020101);
+	let target = currTarg;
+	let player = ns.getPlayer();
+	let so = ns.getServer(target);
+	so.hackDifficulty = so.minDifficulty;
+	let hackPctThread = ns.formulas.hacking.hackPercent(so, player);
+	let hackPerc = hackPctThread * currHack;
+	so.moneyAvailable = so.moneyMax * (1 - hackPerc);
+	let gThreads = ns.formulas.hacking.growThreads(so, player, so.moneyMax);
+	let wThreads = Math.ceil(gThreads / 12.5) + Math.ceil(currHack / 25);
+	let currWeak = Math.ceil(wThreads * 1.5)
+	let currGrow = Math.ceil(gThreads * 1.1)
+	let weakTime = ns.formulas.hacking.weakenTime(so, player);
+	let currDelay = Math.ceil(weakTime) + 5000;
 	let currBurst = ns.peek(10020106);
-	ns.ui.setTailTitle("Batcher 1 " + currTarg + " " + currWeak + " " + currGrow + " " + currHack +" " + currDelay + " " + currBurst + " ");
+	ns.ui.setTailTitle("Batcher 1 " + currTarg + " " + currWeak + " " + currGrow + " " + currHack + " " + currDelay + " " + currBurst + " ");
+	let addHMSec = ns.formulas.hacking.weakenTime(so, player) - ns.formulas.hacking.hackTime(so, player);
+	let addGMSec = ns.formulas.hacking.weakenTime(so, player) - ns.formulas.hacking.growTime(so, player);
 
-	let sec = ns.getServerSecurityLevel(currTarg);
-	let minSec = ns.getServerMinSecurityLevel(currTarg);
-	let money = ns.getServerMoneyAvailable(currTarg);
-	if (money === 0) {
-		money = 1;
-	}
-	let maxMoney = ns.getServerMaxMoney(currTarg);
-
+	let roundcounter = 100
 	let burstcounter = currBurst;
 
-		let nextHost = false;
-		let haveHost = false;
-		let purchServList = ns.getPurchasedServers();
-		let scriptOne = "FezOS/ammo/cw1.single.js";
-		let scriptTwo = "FezOS/ammo/cg1.single.js";
-		let scriptThree = "FezOS/ammo/ch1.single.js";
-		let scriptRam = ((ns.getScriptRam(scriptOne) * currWeak ) + (ns.getScriptRam(scriptTwo) * currGrow) + (ns.getScriptRam(scriptThree) * currHack));
-		let reserveHomeRam = 64;
+	let nextHost = false;
+	let haveHost = false;
+	let purchServList = ns.getPurchasedServers();
+	let scriptOne = "FezOS/ammo/cw1.single.js";
+	let scriptTwo = "FezOS/ammo/cg1.single.js";
+	let scriptThree = "FezOS/ammo/ch1.single.js";
+	let scriptRam = ((ns.getScriptRam(scriptOne) * currWeak) + (ns.getScriptRam(scriptTwo) * currGrow) + (ns.getScriptRam(scriptThree) * currHack));
+	let reserveHomeRam = 64;
 
-		//await ns.sleep(5000);
-		while (true) {
-			sec = ns.getServerSecurityLevel(currTarg);
-			minSec = ns.getServerMinSecurityLevel(currTarg);
-			money = ns.getServerMoneyAvailable(currTarg);
-			if (money === 0) {
-				money = 1;
+	//await ns.sleep(5000);
+	while (true) {
+
+		currHack = ns.peek(10020104);
+		currTarg = ns.peek(10020101);
+		target = currTarg;
+		player = ns.getPlayer();
+		so = ns.getServer(target);
+		so.hackDifficulty = so.minDifficulty;
+		hackPctThread = ns.formulas.hacking.hackPercent(so, player);
+		hackPerc = hackPctThread * currHack;
+		so.moneyAvailable = so.moneyMax * (1 - hackPerc);
+		gThreads = ns.formulas.hacking.growThreads(so, player, so.moneyMax);
+		wThreads = Math.ceil(gThreads / 12.5) + Math.ceil(currHack / 25);
+		currWeak = Math.ceil(wThreads * 1.5);
+		currGrow = Math.ceil(gThreads * 1.1)
+		weakTime = ns.formulas.hacking.weakenTime(so, player);
+		currDelay = Math.ceil(weakTime) + 5000;
+		currBurst = ns.peek(10020106);
+		addHMSec = ns.formulas.hacking.weakenTime(so, player) - ns.formulas.hacking.hackTime(so, player);
+		addGMSec = ns.formulas.hacking.weakenTime(so, player) - ns.formulas.hacking.growTime(so, player);
+		burstcounter = currBurst;
+		ns.ui.setTailTitle("Batcher 1 " + currTarg + " " + currWeak + " " + currGrow + " " + currHack + " " + currDelay + " " + currBurst + " ");
+
+		while (burstcounter > 0) {
+			roundcounter = 100
+			if (roundcounter > burstcounter) {
+				roundcounter = burstcounter
 			}
-			maxMoney = ns.getServerMaxMoney(currTarg);
 
-			burstcounter = currBurst;
-	currTarg = ns.peek(10020101);
-	currWeak = ns.peek(10020102);
-	currGrow = ns.peek(10020103);
-	currHack = ns.peek(10020104);
-	currDelay = ns.peek(10020105);
-	currBurst = ns.peek(10020106);
-	ns.ui.setTailTitle("Batcher 1 " + currTarg + " " + currWeak + " " + currGrow + " " + currHack +" " + currDelay + " " + currBurst + " ");
+			while (roundcounter > 0) {
 
-			while (burstcounter > 0) {
-
-				purchServList = ns.getPurchasedServers()
-					for (let server of purchServList) {
-						if (haveHost == false) {
-							if (Math.floor(ns.getServerMaxRam(server) - ns.getServerUsedRam(server)) > (scriptRam)) {
-								haveHost = true;
-									nextHost = server;
-							} else {
-								haveHost = false;
-							}
-						}
-					}
+				purchServList = ns.getPurchasedServers();
+				for (let server of purchServList) {
 					if (haveHost == false) {
-						if ((Math.floor(ns.getServerMaxRam("home") - ns.getServerUsedRam("home")) - reserveHomeRam) > (scriptRam * 2)) {
+						if (Math.floor(ns.getServerMaxRam(server) - ns.getServerUsedRam(server)) > (scriptRam)) {
 							haveHost = true;
-								nextHost = "home";
+							nextHost = server;
 						} else {
 							haveHost = false;
 						}
 					}
-					if (haveHost == true) {
-
-						if (sec < (minSec + 5) && money > (maxMoney * 0.5)) {
-							ns.exec("FezOS/ammo/ch1.single.js", (nextHost), (currHack), (currTarg));
-						}
-						if (sec < (minSec + 5)) {
-							ns.exec("FezOS/ammo/cg1.single.js", (nextHost), (currGrow), (currTarg));
-						}
-						ns.exec("FezOS/ammo/cw1.single.js", (nextHost), (currWeak), (currTarg));
-
+				}
+				if (haveHost == false) {
+					if ((Math.floor(ns.getServerMaxRam("home") - ns.getServerUsedRam("home")) - reserveHomeRam) > (scriptRam * 2)) {
+						haveHost = true;
+						nextHost = "home";
+					} else {
 						haveHost = false;
-
 					}
-					burstcounter--;
+				}
+				if (haveHost == true) {
+					ns.exec("FezOS/ammo/ch1.single.js", (nextHost), (currHack), (currTarg), (addHMSec));
+					ns.exec("FezOS/ammo/cg1.single.js", (nextHost), (currGrow), (currTarg), (addGMSec));
+					ns.exec("FezOS/ammo/cw1.single.js", (nextHost), (currWeak), (currTarg));
+
+					haveHost = false
+
+
+				}
+				roundcounter--;
+				burstcounter--;
+
 			}
-			await ns.sleep(currDelay);
+			await ns.sleep(4);
 		}
+		await ns.sleep(currDelay);
+	}
 
 }

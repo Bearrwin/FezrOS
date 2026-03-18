@@ -1,5 +1,31 @@
 /** @param {NS} ns */
 
+export function growmax(ns, server) {
+
+	let money = ns.getServerMoneyAvailable(server);
+	if (money === 0)
+		money = 1;
+	let maxMoney = ns.getServerMaxMoney(server);
+	let minSec = ns.getServerMinSecurityLevel(server);
+	let sec = ns.getServerSecurityLevel(server);
+	let gThreads = Math.ceil(ns.growthAnalyze(server, maxMoney / money));
+	let wThreads = (Math.ceil(gThreads / 12.5)) + (Math.ceil(sec - minSec) * 20);
+	return gThreads;
+}
+
+export function nutcracker(ns, server) {
+
+	let money = ns.getServerMoneyAvailable(server);
+	if (money === 0)
+		money = 1;
+	let maxMoney = ns.getServerMaxMoney(server);
+	let minSec = ns.getServerMinSecurityLevel(server);
+	let sec = ns.getServerSecurityLevel(server);
+	let gThreads = Math.ceil(ns.growthAnalyze(server, maxMoney / money));
+	let wThreads = (Math.ceil(gThreads / 12.5)) + (Math.ceil(sec - minSec) * 20);
+	return wThreads;
+}
+
 export function smallest(ns) {
 	let cloud = ns.getPurchasedServers();
 	let servName = cloud[0];
@@ -16,35 +42,35 @@ export function smallest(ns) {
 
 export function nextUpg(ns, server, maxRam) {
 	let curr = ns.getServerMaxRam(server);
-		let max = maxRam;
-		if (curr < maxRam) {
-			let newLog = Math.log2(curr) + 1;
-				return 2 ** (newLog);
-		} else {
-			return 0;
+	let max = maxRam;
+	if (curr < maxRam) {
+		let newLog = Math.log2(curr) + 1;
+		return 2 ** (newLog);
+	} else {
+		return 0;
 
-		}
+	}
 }
 
 export function upgCount(ns, maxRam) {
 	let cloud = ns.getPurchasedServers()
 		let sCount = 0;
-		for (let server of cloud) {
-			let curr = ns.getServerMaxRam(server)
-				if (curr < maxRam) {
-					sCount++;
-				}
-		}
-		return sCount;
+	for (let server of cloud) {
+		let curr = ns.getServerMaxRam(server)
+			if (curr < maxRam) {
+				sCount++;
+			}
+	}
+	return sCount;
 }
 
 export function cloudQty(ns) {
 	let cloud = ns.getPurchasedServers()
 		let sCount = 0;
-		for (let server of cloud) {
-			sCount++;
-		}
-		return sCount;
+	for (let server of cloud) {
+		sCount++;
+	}
+	return sCount;
 }
 
 /*

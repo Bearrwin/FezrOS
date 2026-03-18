@@ -121,7 +121,7 @@ export async function main(ns) {
 			ns.print("Finished buying servers, we now have ",  + cloudCurrQty);
 	}
 
-	ns.exec("FezOS/cloud/cloud.upgtomax.loop.js", "home", 1, cSize);
+	ns.exec("FezOS/cloud/cloud.upgto.loop.js", "home", 1, cSize);
 	ns.exec("FezOS/batcher/batcher.test.js", "home", 1, "phantasy", 2, 10, 1, 100, 100);
 
 }
