@@ -9,46 +9,47 @@ export async function main(ns) {
 	ns.disableLog('ALL');
 
 	let currWork = ns.singularity.getCurrentWork();
-		let cloudMaxQty = ns.getPurchasedServerLimit();
-		let cloudMaxSize = ns.getPurchasedServerMaxRam();
-		let cloudCurrQty = cloudQty(ns);
-		let buySize = 64;
-		let cloudEndQty = cloudMaxQty;
-		let cSize = cloudMaxSize;
-		let sf9 = ns.peek(10010109);
-		let currentCity = ns.getPlayer().city;
+	let cloudMaxQty = ns.getPurchasedServerLimit();
+	let cloudMaxSize = ns.getPurchasedServerMaxRam();
+	let cloudCurrQty = cloudQty(ns);
+	let buySize = 32;
+	let cloudEndQty = cloudMaxQty;
+	let cSize = cloudMaxSize / 4;
+	let sf9 = ns.peek(10010109);
+	let currentCity = ns.getPlayer().city;
+	let batchTarg = "phantasy";
 
-		//let thisBN =
-		//let freshBN =
+	//let thisBN =
+	//let freshBN =
 
-		// Is this a game reload - wait until ports have been initialsed
-		// FezOS/init/init.ports.js then exit the while loop
+	// Is this a game reload - wait until ports have been initialsed
+	// FezOS/init/init.ports.js then exit the while loop
 
-		while (ns.peek(10010001) != "true") {
-			await ns.sleep(1000);
-		}
+	while (ns.peek(10010001) != "true") {
+		await ns.sleep(1000);
+	}
 
-		// Check to see if thid is a freh BN or an aug install/soft reset.
-		/*
-		if (ns.peek(10010003) == "true"){
+	// Check to see if thid is a freh BN or an aug install/soft reset.
+	/*
+	if (ns.peek(10010003) == "true"){
 
-		run freshBN scripts
-		ns.exit()
-		}
-		Run nuke worm
-		Check home ram size
-		For the following list start those being used
-		BB
-		Corp
-		Sleeves
-		Cloud
-		Grafting
-		Stocks
-		Hacknet
-		 */
+	run freshBN scripts
+	ns.exit()
+	}
+	Run nuke worm
+	Check home ram size
+	For the following list start those being used
+	BB
+	Corp
+	Sleeves
+	Cloud
+	Grafting
+	Stocks
+	Hacknet
+	 */
 
-		// Nuke all possible servers to gain root access
-		ns.run("FezOS/worm/worm.nuke.js");
+	// Nuke all possible servers to gain root access
+	ns.run("FezOS/worm/worm.nuke.js");
 	await ns.sleep(10000);
 
 	// Run combo hack worm from all NPC servers we have root access to.
@@ -112,17 +113,29 @@ export async function main(ns) {
 
 	if (cloudCurrQty < cloudEndQty) {
 		let sToBuy = cloudEndQty - cloudCurrQty;
-			ns.exec("FezOS/cloud/cloud.buy.loop.js", "home", 1, "S", buySize, sToBuy, 5000);
-			while (cloudCurrQty < cloudEndQty) {
-				cloudCurrQty = cloudQty(ns);
-					ns.print("Waiting on funds to buy servers");
-					await ns.sleep(10000);
-			}
-			ns.print("Finished buying servers, we now have ",  + cloudCurrQty);
+		ns.exec("FezOS/cloud/cloud.buy.loop.js", "home", 1, "S", buySize, sToBuy, 5000);
+		while (cloudCurrQty < cloudEndQty) {
+			cloudCurrQty = cloudQty(ns);
+			ns.print("Waiting on funds to buy servers");
+			await ns.sleep(10000);
+		}
+		ns.print("Finished buying servers, we now have ", + cloudCurrQty);
+	}
+	await ns.sleep(1000);
+
+
+	ns.run("FezOS/worm/worm.killall.npc.js");
+	await ns.sleep(1000);
+	ns.run("FezOS/nutcracker.js", 1, batchTarg)
+	ns.run("FezOS/batcher/batcher.break.cloud.js", 1, batchTarg, 1);
+	ns.exec("FezOS/cloud/cloud.upgto.loop.js", "home", 1, cSize);
+	ns.run("FezOS/probe/probe.cloud.js");
+	while (ns.peek(10020001) != "False") {
+		await ns.sleep(1000);
+
 	}
 
-	ns.exec("FezOS/cloud/cloud.upgto.loop.js", "home", 1, cSize);
-	ns.exec("FezOS/batcher/batcher.test.js", "home", 1, "phantasy", 2, 10, 1, 100, 100);
+	ns.run("FezOS/batcher/batcher1.cloud.js");
 
 }
 

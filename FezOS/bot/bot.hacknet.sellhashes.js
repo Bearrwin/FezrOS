@@ -1,10 +1,10 @@
 /** @param {NS} ns */
 export async function main(ns) {
 
-	ns.ui.openTail();
-	ns.ui.resizeTail(300, 130);
-	ns.ui.moveTail(1225, 485);
-	ns.disableLog('sleep');
+	// ns.ui.openTail();
+	// ns.ui.resizeTail(300, 130);
+	// ns.ui.moveTail(1225, 485);
+	// ns.disableLog('sleep');
 
 	let threshHashes = ns.peek(10040011);
 	let hashType = ns.peek(10040012);

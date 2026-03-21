@@ -24,7 +24,7 @@ export async function main(ns) {
 
 		while (availMoney < serverCost) {
 			availMoney = ns.getServerMoneyAvailable("home");
-			ns.print(`Saving my pennies for the next upgrade, we have ${ns.formatNumber(availMoney, 2)} / ${ns.formatNumber(serverCost, 2)}`);
+			ns.print(`Saving my pennies for the next server, we have ${ns.formatNumber(availMoney, 2)} / ${ns.formatNumber(serverCost, 2)}`);
 			await ns.sleep(10000);
 		}
 

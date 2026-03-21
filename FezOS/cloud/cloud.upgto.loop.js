@@ -3,6 +3,23 @@ import { cloudQty, upgCount, nextUpg, smallest } from "FezOS/func/func.js";
 
 export async function main(ns) {
 
+	/*
+	128
+256
+512
+1024
+2048
+4096
+8192
+16384
+32768
+65536
+131072
+262144
+524288
+1048576
+*/
+
 	ns.ui.openTail();
 	ns.ui.resizeTail(900, 220);
 	ns.ui.moveTail(455, 50);
